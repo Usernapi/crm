@@ -16,6 +16,10 @@ app.use(express.json());
 // Routes
 app.use("/home", home);
 app.use("/api/users", require("./routes/prop"));
+app.use("/api/sale", require("./routes/sale"));
+app.use("/api/retal", require("./routes/retal"));
+
+app.use("/api/ejemplo", require("./routes/ejemplo"));
 
 // connection
 const port = process.env.PORT || 9001;

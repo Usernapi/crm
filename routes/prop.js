@@ -11,7 +11,7 @@ router.get("/:id", async (req, res) => {
   sdk
     .getProperties({ page: id, limit: "20" })
     .then(({ data }) => {
-      console.log(data);
+      // console.log(data);
       // Hace que .then() devuelva una promera rechazada
       res.json(data);
     })
