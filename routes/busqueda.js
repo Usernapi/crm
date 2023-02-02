@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
       .getProperties({
         page: "1",
         limit: "20",
-        "search[property_types]": ids1,
+        "search[property_types][]": ids1,
         "search[operation_type]": ids2,
       })
       .then(({ data }) => res.json(data))
