@@ -12,7 +12,7 @@ router.get("/:id", async (req, res) => {
         page: id,
         limit: "20",
         "search[property_types][]": "all",
-        "search[operation_type]": "sale",
+        "search[operation_type]": "rental",
         "search[statuses][]": "rental",
       })
       .then((data) => {

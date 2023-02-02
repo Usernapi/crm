@@ -18,6 +18,7 @@ app.use("/home", home);
 app.use("/api/users", require("./routes/prop"));
 app.use("/api/sale", require("./routes/sale"));
 app.use("/api/retal", require("./routes/retal"));
+app.use("/api/busqueda", require("./routes/busqueda"));
 
 app.use("/api/ejemplo", require("./routes/ejemplo"));
 
