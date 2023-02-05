@@ -3,25 +3,33 @@ const router = new Router();
 
 const fetch = require("node-fetch");
 
-const sdk = require("api")("@easybroker/v1.0#1jk84j1glc5flv8a");
-
 router.get("/", async (req, res) => {
   let ids1 = req.query.re1;
   let ids2 = req.query.re2;
-  console.log(ids1 + ids2);
+  let ids3 = req.query.re3;
 
-  try {
-    await sdk.auth("bsytg8rgtuuhm952r71yp0lxs9y46k");
-    await sdk
-      .getProperties({
-        page: "1",
-        limit: "20",
-        "search[property_types][]": ids1,
-        "search[operation_type]": ids2,
-      })
-      .then(({ data }) => res.json(data))
-      .catch((err) => console.error(err));
-  } catch (error) {}
+  datos = [];
+
+  const url =
+    "https://api.easybroker.com/v1/properties?page=" +
+    `${ids3}` +
+    " &limit=20&search[property_types][]=" +
+    `${ids1}` +
+    "&search[operation_type]=" +
+    `${ids2}` +
+    "&search[statuses][]=published";
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      "X-Authorization": "bsytg8rgtuuhm952r71yp0lxs9y46k",
+    },
+  };
+
+  fetch(url, options)
+    .then((rese) => rese.json())
+    .then((json) => res.json(json))
+    .catch((err) => console.error("error:" + err));
 });
 
 module.exports = router;

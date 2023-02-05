@@ -1,15 +1,9 @@
 const { Router } = require("express");
 const router = new Router();
 
-const fetch = require("node-fetch");
-
 router.get("/:id", async (req, res) => {
-  const id = req.params.id;
-
-  const url =
-    "https://api.easybroker.com/v1/properties?page=" +
-    `${id}` +
-    "&limit=20&search[statuses][]=published";
+  let id = req.params.id;
+  const url = `https://api.easybroker.com/v1/properties/${id}`;
   const options = {
     method: "GET",
     headers: {
