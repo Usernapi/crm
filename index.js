@@ -21,6 +21,7 @@ app.use("/api/des", require("./routes/descrip"));
 app.use("/api/busqueda", require("./routes/busqueda"));
 
 app.use("/api/ejemplo", require("./routes/ejemplo"));
+app.use("/api/contacto", require("./routes/contactame"));
 
 // connection
 const port = process.env.PORT || 9001;
