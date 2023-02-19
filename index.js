@@ -22,7 +22,9 @@ app.use("/api/busqueda", require("./routes/busqueda"));
 
 app.use("/api/ejemplo", require("./routes/ejemplo"));
 app.use("/api/contacto", require("./routes/contactame"));
+app.use("/api/contactanos", require("./routes/contactanos"));
 
+app.use("/api/locali", require("./routes/localizacion"));
 // connection
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));
