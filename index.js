@@ -19,6 +19,7 @@ app.use("/api/all", require("./routes/prop"));
 
 app.use("/api/des", require("./routes/descrip"));
 app.use("/api/busqueda", require("./routes/busqueda"));
+app.use("/api/agregar", require("./routes/agrega"));
 
 app.use("/api/ejemplo", require("./routes/ejemplo"));
 app.use("/api/contacto", require("./routes/contactame"));
