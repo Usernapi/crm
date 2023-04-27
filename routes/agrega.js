@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
         cross_street: req.query.cru_ubi,
         postal_code: req.query.cp_ubi,
       },
-      features: ["palapa", "Terraza"],
+      features: ["Penthouse", "Terraza", "Planta eléctrica"],
       images: [
         {
           url: "https://firebasestorage.googleapis.com/v0/b/tupatrimonio-33a89.appspot.com/o/WhatsApp%20Image%202023-04-24%20at%208.19.56%20AM.jpeg?alt=media&token=394fd182-8709-4406-8c50-f5d997fe710d",
@@ -49,7 +49,7 @@ router.get("/", async (req, res) => {
       age: 2020,
       floors: req.query.pisos,
       expenses: req.query.gastos,
-      internal_id: req.query.id,
+
       share_commission: true,
       collaboration_notes:
         "We only share commission with agencies located in the same city.",
