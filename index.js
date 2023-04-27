@@ -4,21 +4,25 @@ const home = require("./routes/home");
 const cors = require("cors");
 
 const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
 
-// const upload = multer({ dest: "uploads/" });
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
+cloudinary.config({
+  cloud_name: "dkpnspobs",
+  api_key: "155272241166966",
+  api_secret: "egxuuBejAB5fQj8dneRTUVj3ZmE",
 });
-
-var upload = multer({ storage: storage });
 
 // Middlewares
 const app = express();
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
 
 var corsOptions = {
   origin: "*", // Reemplazar con dominio
@@ -26,6 +30,8 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
+
+const upload = multer({ storage: storage }).single("file");
 
 // Routes
 app.use("/home", home);
@@ -42,14 +48,30 @@ app.use("/api/imge", require("./routes/img"));
 
 app.use("/api/locali", require("./routes/localizacion"));
 
-app.post("/upload", upload.single("file"), (req, res) => {
-  console.log(req.file);
-  res.send("Archivo recibido");
+app.use("/api/cloud", require("./routes/cloud"));
+
+app.post("/upload", function (req, res) {
+  upload(req, res, function (err) {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Error al cargar archivo");
+    }
+    console.log(req.file);
+    cloudinary.uploader.upload(
+      req.file.path,
+      { public_id: req.file.originalname },
+      function (error, result) {
+        if (error) {
+          console.error(error);
+          return res.status(500).send("Error al cargar archivo");
+        }
+        console.log(result);
+        // La URL de acceso público está en result.secure_url
+        return res.status(200).send("Archivo cargado correctamente");
+      }
+    );
+  });
 });
-app.get("/images/:filename", (req, res) => {
-  const filename = req.params.filename;
-  res.sendFile(__dirname + "/uploads/" + filename);
-});
-// connection;
+
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));
