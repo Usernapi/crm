@@ -73,5 +73,8 @@ app.post("/upload", function (req, res) {
   });
 });
 
+app.use("/api/agreimg", require("./routes/agreimg"));
+
+app.use("/api/ameni", require("./routes/agreamenidades"));
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));

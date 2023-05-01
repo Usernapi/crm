@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const cloudinary = require("cloudinary").v2;
 var multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 cloudinary.config({
   cloud_name: "dkpnspobs",

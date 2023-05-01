@@ -29,24 +29,22 @@ router.get("/", async (req, res) => {
         cross_street: req.query.cru_ubi,
         postal_code: req.query.cp_ubi,
       },
-      features: ["Penthouse", "Terraza", "Planta eléctrica"],
-      images: [
-        {
-          url: "https://firebasestorage.googleapis.com/v0/b/tupatrimonio-33a89.appspot.com/o/WhatsApp%20Image%202023-04-24%20at%208.19.56%20AM.jpeg?alt=media&token=394fd182-8709-4406-8c50-f5d997fe710d",
-        },
-      ],
+      // features: ["Penthouse", "Terraza", "Planta eléctrica"],
+      // images: [
+      //   {
+      //     url: "https://firebasestorage.googleapis.com/v0/b/tupatrimonio-33a89.appspot.com/o/WhatsApp%20Image%202023-04-24%20at%208.19.56%20AM.jpeg?alt=media&token=394fd182-8709-4406-8c50-f5d997fe710d",
+      //   },
+      // ],
       property_type: req.query.type_propiedad,
       title: req.query.titulo,
       description: req.query.descripcion,
       status: req.query.estado,
       private_description: req.query.descripcionpri,
-      agent: req.query.agente,
       show_prices: true,
       bedrooms: req.query.dormitorios,
       bathrooms: req.query.baños,
       half_bathrooms: req.query.mbaños,
       parking_spaces: req.query.estacionamiento,
-      age: 2020,
       floors: req.query.pisos,
       expenses: req.query.gastos,
 
